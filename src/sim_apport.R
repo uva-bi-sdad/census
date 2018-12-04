@@ -36,17 +36,20 @@ for (i in popcols2) {
 #
 
 # 1990
-sim1990 <- apportion(cp1990, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim1990 <- apportion(cp1990, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score1990 <- priority_scores
 order1990 <- seat_order
 
 # 2000
-sim2000 <- apportion(cp2000, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2000 <- apportion(cp2000, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2000 <- priority_scores
 order2000 <- seat_order
 
 # 2010
-sim2010 <- apportion(cp2010, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2010 <- apportion(cp2010, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2010 <- priority_scores
 order2010 <- seat_order
 
@@ -56,37 +59,44 @@ order2010 <- seat_order
 #
 
 # 2011
-sim2011 <- apportion(cp2011, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2011 <- apportion(cp2011, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2011 <- priority_scores
 order2011 <- seat_order
 
 # 2012
-sim2012 <- apportion(cp2012, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2012 <- apportion(cp2012, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2012 <- priority_scores
 order2012 <- seat_order
 
 # 2013
-sim2013 <- apportion(cp2013, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2013 <- apportion(cp2013, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2013 <- priority_scores
 order2013 <- seat_order
 
 # 2014
-sim2014 <- apportion(cp2014, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2014 <- apportion(cp2014, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2014 <- priority_scores
 order2014 <- seat_order
 
 # 2015
-sim2015 <- apportion(cp2015, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2015 <- apportion(cp2015, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2015 <- priority_scores
 order2015 <- seat_order
 
 # 2016
-sim2016 <- apportion(cp2016, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2016 <- apportion(cp2016, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2016 <- priority_scores
 order2016 <- seat_order
 
 # 2017
-sim2017 <- apportion(cp2017, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+sim2017 <- apportion(cp2017, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
 score2017 <- priority_scores
 order2017 <- seat_order
 
@@ -111,14 +121,25 @@ ord <- data.frame(lapply(ord, tolower))
 
 # Scores
 scr <- list(score1990, score2000, score2010, score2011, score2012, score2013, score2014, score2015, score2016, score2017)
-  
+
+
+#
+# Write out ---------------------------------------------------------------------------------------------------------------------------
+#
+
+# Note: Does not write out priority values (list). Will add if necessary.
+
+write_csv(apport, "./output/apportionment.csv", append = FALSE, col_names = TRUE)
+write_csv(ord, "./output/order.csv", append = FALSE, col_names = TRUE)
+
 
 #
 # Clean up working environment ---------------------------------------------------------------------------------------------------------
 #
 
-remove(list = c(ls(pattern = "pop_"), ls(pattern = "df"), ls(pattern = "popcols"), ls(pattern = "seat_order"), ls(pattern = "priority_scores"), 
-                ls(pattern = "cp"), ls(pattern = "cp"), ls(pattern = "score"), ls(pattern = "order"), ls(pattern = "sim"), ls(pattern = "i")))
+remove(list = c(ls(pattern = "pop_"), ls(pattern = "df"), ls(pattern = "popcols"), ls(pattern = "seat_order"), 
+                ls(pattern = "priority_scores"), ls(pattern = "cp"), ls(pattern = "cp"), ls(pattern = "score"), 
+                ls(pattern = "order"), ls(pattern = "sim"), ls(pattern = "i")))
 
 
 
