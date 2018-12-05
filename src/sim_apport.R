@@ -2,105 +2,45 @@ library(readr)
 library(congappor) # devtools::install_github("coletl/congappor")
 library(dplyr)
 library(stringr)
-#library(xlsx)
 library(openxlsx)
 
-# Notes: Two separate files because:
-#          Simulations and input for 1990-2010 are based on/match the 1990-2010 Apportionment2.xlsx file (onedrive, census, data).
-#          Simulations and input for 2011-2017 are based on the Population2010_2017.xlsx file (onedrive, census, data).
-#        Repetitive code because:
-#          apportion won't work in a loop. Working to see if I can fix this.
-  
+# Notes: 
+# Simulations and input for 1990-2010 are based on/match the 1990-2010 Apportionment2.xlsx file (onedrive, census, data).
+# Simulations and input for 2011-2017 are based on the Population2010_2017.xlsx file (onedrive, census, data).
+
 
 #
 # Prepare data --------------------------------------------------------------------------------------------------------------
 #
 
-pop_1990_2010 <- read_csv("./output/pop1990_2010.csv", col_names = TRUE)
-pop_2011_2017 <- read_csv("./output/pop2011_2017.csv", col_names = TRUE)
+population <- read_csv("./output/population.csv", col_names = TRUE)
 
 # Make input dataframes by year
-popcols1 <- c("p1990", "p2000", "p2010")
-for (i in popcols1) {
-  df <- pop_1990_2010 %>% select(state, i) %>% rename(pop = i)
-  assign(paste("c", i, sep = ""), df)
-}
-
-popcols2 <- c("p2011", "p2012", "p2013", "p2014", "p2015", "p2016", "p2017")
-for (i in popcols2) {
-  df <- pop_2011_2017 %>% select(state, i) %>% rename(pop = i)
+popcols <- c("p1990", "p2000", "p2010", "p2011", "p2012", "p2013", "p2014", "p2015", "p2016", "p2017")
+for (i in popcols) {
+  df <- population %>% select(state, i) %>% rename(pop = i)
   assign(paste("c", i, sep = ""), df)
 }
 
 
 #
-# Replicate 1990 - 2010 -----------------------------------------------------------------------------------------------------
+# Replicate 1990-2010, project 2011-2017 ------------------------------------------------------------------------------------
 #
 
-# 1990
-sim1990 <- apportion(cp1990, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score1990 <- priority_scores
-order1990 <- seat_order
+dflist <- list("1990" = cp1990, "2000" = cp2000, "2010" = cp2010,
+               "2011" = cp2011, "2012" = cp2012, "2013" = cp2013, "2014" = cp2014, "2015" = cp2015, "2016" = cp2016, "2017" = cp2017)
+titles <- names(dflist)
 
-# 2000
-sim2000 <- apportion(cp2000, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2000 <- priority_scores
-order2000 <- seat_order
-
-# 2010
-sim2010 <- apportion(cp2010, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2010 <- priority_scores
-order2010 <- seat_order
-
-
-#
-# Project 2011-2017 ---------------------------------------------------------------------------------------------------------
-#
-
-# 2011
-sim2011 <- apportion(cp2011, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2011 <- priority_scores
-order2011 <- seat_order
-
-# 2012
-sim2012 <- apportion(cp2012, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2012 <- priority_scores
-order2012 <- seat_order
-
-# 2013
-sim2013 <- apportion(cp2013, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2013 <- priority_scores
-order2013 <- seat_order
-
-# 2014
-sim2014 <- apportion(cp2014, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2014 <- priority_scores
-order2014 <- seat_order
-
-# 2015
-sim2015 <- apportion(cp2015, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2015 <- priority_scores
-order2015 <- seat_order
-
-# 2016
-sim2016 <- apportion(cp2016, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2016 <- priority_scores
-order2016 <- seat_order
-
-# 2017
-sim2017 <- apportion(cp2017, total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
-                     min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
-score2017 <- priority_scores
-order2017 <- seat_order
+for (i in seq_along(dflist)) {
+  app <- apportion(dflist[[i]], total_seats = 435, DC_seats = FALSE, PR_seats = FALSE, GU_seats = FALSE, 
+                   min_seats = 1, store_priority = TRUE, store_seat_order = TRUE)
+  scores <- priority_scores
+  order <- seat_order
+  
+  assign(paste("apportion", titles[i], sep = ""), app)
+  assign(paste("priorityvals", titles[i], sep = ""), scores)
+  assign(paste("seatorder", titles[i], sep = ""), order)
+}
 
 
 #
@@ -108,22 +48,23 @@ order2017 <- seat_order
 #
 
 # Seats
-apport <- data.frame(state = sim1990$state, seat1990 = sim1990$seats, seat2000 = sim2000$seats, seat2010 = sim2010$seats, 
-                        seat2011 = sim2011$seats, seat2012 = sim2012$seats, seat2013 = sim2013$seats, seat2014 = sim2014$seats, 
-                        seat2015 = sim2015$seats, seat2016 = sim2016$seats, seat2017 = sim2017$seats)
-apport$state <- str_to_lower(apport$state)
-apport$state <- str_replace_all(apport$state, " ", "-")
+apportionment <- data.frame(state = apportion1990$state, seat1990 = apportion1990$seats, seat2000 = apportion2000$seats, seat2010 = apportion2010$seats, 
+                        seat2011 = apportion2011$seats, seat2012 = apportion2012$seats, seat2013 = apportion2013$seats, seat2014 = apportion2014$seats, 
+                        seat2015 = apportion2015$seats, seat2016 = apportion2016$seats, seat2017 = apportion2017$seats)
+apportionment$state <- str_to_lower(apportionment$state)
+apportionment$state <- str_replace_all(apportionment$state, " ", "-")
 
 # Order
-ord <- data.frame(step = c(1:385), order1990 = order1990, order2000 = order2000, order2010 = order2010, order2011 = order2011,
-                     order2012 = order2012, order2013 = order2013, order2014 = order2014, order2015 = order2015,
-                     order2016 = order2016, order2017 = order2017)
-ord <- ord %>% mutate_all(funs(str_replace_all(., " ", "-")))
-ord <- data.frame(lapply(ord, tolower))
+seatorder <- data.frame(step = c(1:385), order1990 = seatorder1990, order2000 = seatorder2000, order2010 = seatorder2010, order2011 = seatorder2011,
+                     order2012 = seatorder2012, order2013 = seatorder2013, order2014 = seatorder2014, order2015 = seatorder2015,
+                     order2016 = seatorder2016, order2017 = seatorder2017)
+seatorder <- seatorder %>% mutate_all(funs(str_replace_all(., " ", "-")))
+seatorder <- data.frame(lapply(seatorder, tolower))
 
 # Scores
-scr <- list("1990" = score1990, "2000" = score2000, "2010" = score2010, "2011" = score2011, "2012" = score2012, "2013" = score2013, 
-            "2014" = score2014, "2015" = score2015, "2016" = score2016, "2017" = score2017)
+priorityvalues <- list("1990" = priorityvals1990, "2000" = priorityvals2000, "2010" = priorityvals2010, "2011" = priorityvals2011, 
+                       "2012" = priorityvals2012, "2013" = priorityvals2013, "2014" = priorityvals2014, "2015" = priorityvals2015, 
+                       "2016" = priorityvals2016, "2017" = priorityvals2017)
 
 
 #
@@ -131,31 +72,17 @@ scr <- list("1990" = score1990, "2000" = score2000, "2010" = score2010, "2011" =
 #
 
 # Apportionment (seats) and seat assignment order
-write_csv(apport, "./output/apportionment.csv", append = FALSE, col_names = TRUE)
-write_csv(ord, "./output/seatorder.csv", append = FALSE, col_names = TRUE)
+write_csv(apportionment, "./output/apportionment.csv", append = FALSE, col_names = TRUE)
+write_csv(seatorder, "./output/seatorder.csv", append = FALSE, col_names = TRUE)
 
-# Population estimates
-pop_total <- merge(pop_1990_2010, pop_2011_2017, by = "state")
-write_csv(pop_total, "./output/population.csv", append = FALSE, col_names = TRUE)
 
 # Priority values
-# for (i in c(1:10)){
-#   write.xlsx(scr[i], file = "./output/priorityvals.xlsx", sheetName = paste(i), append = T)
-# }
+write.xlsx(priorityvalues, file = "./output/priorityvalues.xlsx")
 
-write.xlsx(scr, file = "./output/priorityvals.xlsx")
 
 #
 # Clean up working environment ---------------------------------------------------------------------------------------------------------
 #
 
-remove(list = c(ls(pattern = "pop_"), ls(pattern = "df"), ls(pattern = "popcols"), ls(pattern = "seat_order"), 
-                ls(pattern = "priority_scores"), ls(pattern = "cp"), ls(pattern = "cp"), ls(pattern = "score"), 
-                ls(pattern = "order"), ls(pattern = "sim"), ls(pattern = "i")))
-
-
-
-
-
-
+rm(list = ls())
 
