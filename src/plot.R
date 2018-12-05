@@ -30,13 +30,14 @@ app2$year <- as.integer(app2$year)
 seatplot <- ggplot(app2, aes(x = year, y = seats, color = state)) +
   geom_line() +
   scale_x_continuous(breaks = c(1990, 2000, seq(from = 2010, to = 2017, by = 1))) +
-  scale_y_continuous(breaks = seq(from = 1, to = 55, by = 5)) +
-  expand_limits(y = c(1, 55)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 60, by = 5)) +
+  expand_limits(y = c(1, 56)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
   labs(x = "Year", y = "# Seats", color = "State", title = "Seats apportioned per state over time")
 seatplot <- ggplotly(seatplot)
 seatplot
 saveWidget(seatplot, file = "seatplot.html")
+
 
 #
 # Percent change over time -----------------------------------------------------------------------------------------------
@@ -146,26 +147,34 @@ saveWidget(chg9017a, file = "chg9017a.html")
 # Treemaps -----------------------------------------------------------------------------------------------
 #
 
-tree1990 <- treemap(app1, index = "state", vSize = "seat1990", title = "Apportioned seats by state, 1990", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2000 <- treemap(app1, index = "state", vSize = "seat2000", title = "Apportioned seats by state, 2000", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2010 <- treemap(app1, index = "state", vSize = "seat2010", title = "Apportioned seats by state, 2010", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2011 <- treemap(app1, index = "state", vSize = "seat2011", title = "Apportioned seats by state, 2011", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2012 <- treemap(app1, index = "state", vSize = "seat2012", title = "Apportioned seats by state, 2012", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2013 <- treemap(app1, index = "state", vSize = "seat2013", title = "Apportioned seats by state, 2013", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2014 <- treemap(app1, index = "state", vSize = "seat2014", title = "Apportioned seats by state, 2014", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2015 <- treemap(app1, index = "state", vSize = "seat2015", title = "Apportioned seats by state, 2015", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2016 <- treemap(app1, index = "state", vSize = "seat2016", title = "Apportioned seats by state, 2016", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-tree2017 <- treemap(app1, index = "state", vSize = "seat2017", title = "Apportioned seats by state, 2017", 
+treemap(app1, index = "state", vSize = "seat1990", title = "Apportioned seats by state, 1990", 
                     palette = "Paired", border.col = "white", fontcolor.labels = "black")
 
+treemap(app1, index = "state", vSize = "seat2000", title = "Apportioned seats by state, 2000", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2010", title = "Apportioned seats by state, 2010", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2011", title = "Apportioned seats by state, 2011", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2012", title = "Apportioned seats by state, 2012", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2013", title = "Apportioned seats by state, 2013", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2014", title = "Apportioned seats by state, 2014", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2015", title = "Apportioned seats by state, 2015", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2016", title = "Apportioned seats by state, 2016", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+
+treemap(app1, index = "state", vSize = "seat2017", title = "Apportioned seats by state, 2017", 
+                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
 
 

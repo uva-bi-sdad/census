@@ -2,6 +2,8 @@ library(readr)
 library(congappor) # devtools::install_github("coletl/congappor")
 library(dplyr)
 library(stringr)
+#library(xlsx)
+library(openxlsx)
 
 # Notes: Two separate files because:
 #          Simulations and input for 1990-2010 are based on/match the 1990-2010 Apportionment2.xlsx file (onedrive, census, data).
@@ -120,18 +122,28 @@ ord <- ord %>% mutate_all(funs(str_replace_all(., " ", "-")))
 ord <- data.frame(lapply(ord, tolower))
 
 # Scores
-scr <- list(score1990, score2000, score2010, score2011, score2012, score2013, score2014, score2015, score2016, score2017)
+scr <- list("1990" = score1990, "2000" = score2000, "2010" = score2010, "2011" = score2011, "2012" = score2012, "2013" = score2013, 
+            "2014" = score2014, "2015" = score2015, "2016" = score2016, "2017" = score2017)
 
 
 #
 # Write out ---------------------------------------------------------------------------------------------------------------------------
 #
 
-# Note: Does not write out priority values (list). Will add if necessary.
-
+# Apportionment (seats) and seat assignment order
 write_csv(apport, "./output/apportionment.csv", append = FALSE, col_names = TRUE)
-write_csv(ord, "./output/order.csv", append = FALSE, col_names = TRUE)
+write_csv(ord, "./output/seatorder.csv", append = FALSE, col_names = TRUE)
 
+# Population estimates
+pop_total <- merge(pop_1990_2010, pop_2011_2017, by = "state")
+write_csv(pop_total, "./output/population.csv", append = FALSE, col_names = TRUE)
+
+# Priority values
+# for (i in c(1:10)){
+#   write.xlsx(scr[i], file = "./output/priorityvals.xlsx", sheetName = paste(i), append = T)
+# }
+
+write.xlsx(scr, file = "./output/priorityvals.xlsx")
 
 #
 # Clean up working environment ---------------------------------------------------------------------------------------------------------
