@@ -4,12 +4,9 @@ library(stringr)
 library(tidyr)
 library(ggplot2)
 library(plotly)
-library(treemap) #install.packages("treemap")
+library(treemapify) #install.packages("treemapify")
 library(RColorBrewer)
 library(htmlwidgets)
-
-
-# Note: Can't save widgets in directories (known issue with Plotly). Have to manually move saved files after. 
 
 
 #
@@ -136,34 +133,63 @@ ggsave("chg9017a.png", plot = chg9017a, device = png(), path = "./output/plots/"
 # Treemaps -----------------------------------------------------------------------------------------------
 #
 
-treemap(app1, index = "state", vSize = "seat1990", title = "Apportioned seats by state, 1990", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat1990plot <- ggplot(app1, aes(area = seat1990, fill = seat1990, label = paste(state, "(", seat1990, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 1990")
+ggsave("tree1990.png", plot = seat1990plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2000", title = "Apportioned seats by state, 2000", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2000plot <- ggplot(app1, aes(area = seat2000, fill = seat2000, label = paste(state, "(", seat2000, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2000")
+ggsave("tree2000.png", plot = seat2000plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2010", title = "Apportioned seats by state, 2010", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2010plot <- ggplot(app1, aes(area = seat2010, fill = seat2010, label = paste(state, "(", seat2010, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2010")
+ggsave("tree2010.png", plot = seat2010plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2011", title = "Apportioned seats by state, 2011", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2011plot <- ggplot(app1, aes(area = seat2011, fill = seat2011, label = paste(state, "(", seat2011, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2011")
+ggsave("tree2011.png", plot = seat2011plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2012", title = "Apportioned seats by state, 2012", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2012plot <- ggplot(app1, aes(area = seat2012, fill = seat2012, label = paste(state, "(", seat2012, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2012")
+ggsave("tree2012.png", plot = seat2012plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2013", title = "Apportioned seats by state, 2013", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2013plot <- ggplot(app1, aes(area = seat2013, fill = seat2013, label = paste(state, "(", seat2013, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2013")
+ggsave("tree2013.png", plot = seat2013plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2014", title = "Apportioned seats by state, 2014", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2014plot <- ggplot(app1, aes(area = seat2014, fill = seat2014, label = paste(state, "(", seat2014, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2014")
+ggsave("tree2014.png", plot = seat2014plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2015", title = "Apportioned seats by state, 2015", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2015plot <- ggplot(app1, aes(area = seat2015, fill = seat2015, label = paste(state, "(", seat2015, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2015")
+ggsave("tree2015.png", plot = seat2015plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2016", title = "Apportioned seats by state, 2016", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
+seat2016plot <- ggplot(app1, aes(area = seat2016, fill = seat2016, label = paste(state, "(", seat2016, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2016")
+ggsave("tree2016.png", plot = seat2016plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
-treemap(app1, index = "state", vSize = "seat2017", title = "Apportioned seats by state, 2017", 
-                    palette = "Paired", border.col = "white", fontcolor.labels = "black")
-
+seat2017plot <- ggplot(app1, aes(area = seat2017, fill = seat2017, label = paste(state, "(", seat2017, ")", sep = ""))) +
+  geom_treemap(layout = "squarified", show.legend = FALSE) +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
+  labs(title = "Apportioned seats by state, 2017")
+ggsave("tree2017.png", plot = seat2017plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
 
