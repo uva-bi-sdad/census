@@ -7,6 +7,8 @@ library(plotly)
 library(treemapify) #install.packages("treemapify")
 library(RColorBrewer)
 library(htmlwidgets)
+library(gganimate) #devtools::install_github('thomasp85/gganimate')
+library(tweenr)
 
 
 #
