@@ -36,7 +36,7 @@ seatplot <- ggplot(app2, aes(x = year, y = seats, color = state)) +
   labs(x = "Year", y = "# Seats", color = "State", title = "Seats apportioned per state over time")
 seatplot <- ggplotly(seatplot)
 seatplot
-saveWidget(seatplot, file = "seatplot.html")
+saveWidget(seatplot, file.path(getwd(), "output", "plots", "seatplot.html"))
 
 
 #
@@ -65,9 +65,7 @@ chg9010p <- ggplot(app1, aes(x = reorder(state, -pcgchg9010), y = pcgchg9010, co
   labs(title = "Percent change in number of seats by state, 1990 - 2010", y = "% change", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-chg9010p <- ggplotly(chg9010p)
-chg9010p
-saveWidget(chg9010p, file = "chg9010p.html")
+ggsave("chg9010p.png", plot = chg9010p, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 chg1117p <- ggplot(app1, aes(x = reorder(state, -pcgchg1117), y = pcgchg1117, color = pcgchg1117size)) +
   geom_point() +
@@ -76,9 +74,7 @@ chg1117p <- ggplot(app1, aes(x = reorder(state, -pcgchg1117), y = pcgchg1117, co
   labs(title = "Projected percent change in number of seats by state, 2011-2017", y = "Projected % change", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-chg1117p <- ggplotly(chg1117p)
-chg1117p
-saveWidget(chg1117p, file = "chg1117p.html")
+ggsave("chg1117p.png", plot = chg1117p, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 chg9017p <- ggplot(app1, aes(x = reorder(state, -pcgchg9017), y = pcgchg9017, color = pcgchg9017size)) +
   geom_point() +
@@ -87,9 +83,8 @@ chg9017p <- ggplot(app1, aes(x = reorder(state, -pcgchg9017), y = pcgchg9017, co
   labs(title = "Projected percent change in number of seats by state, 1990-2017", y = "Projected % change", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-chg9017p <- ggplotly(chg9017p)
-chg9017p
-saveWidget(chg9017p, file = "chg9017p.html")
+ggsave("chg9017p.png", plot = chg9017p, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
+
 
 #
 # Absolute change over time -----------------------------------------------------------------------------------------------
@@ -116,9 +111,7 @@ chg9010a <- ggplot(app1, aes(x = reorder(state, -abschg9010), y = abschg9010, co
   labs(title = "Projected absolute change in number of seats by state, 1990 - 2010", y = "Change in seat number", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-chg9010a <- ggplotly(chg9010a)
-chg9010a
-saveWidget(chg9010a, file = "chg9010a.html")
+ggsave("chg9010a.png", plot = chg9010a, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 chg1117a <- ggplot(app1, aes(x = reorder(state, -abschg1117), y = abschg1117, color = abschg1117size)) +
   geom_point() +
@@ -127,9 +120,7 @@ chg1117a <- ggplot(app1, aes(x = reorder(state, -abschg1117), y = abschg1117, co
   labs(title = "Projected absolute change in number of seats by state, 2011-2017", y = "Projected change in seat number", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-chg1117a <- ggplotly(chg1117a)
-chg1117a
-saveWidget(chg1117a, file = "chg1117a.html")
+ggsave("chg1117a.png", plot = chg1117a, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 chg9017a <- ggplot(app1, aes(x = reorder(state, -abschg9017), y = abschg9017, color = abschg9017size)) +
   geom_point() +
@@ -138,9 +129,7 @@ chg9017a <- ggplot(app1, aes(x = reorder(state, -abschg9017), y = abschg9017, co
   labs(title = "Projected absolute change in number of seats by state, 1990-2017", y = "Projected change in seat number", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-chg9017a <- ggplotly(chg9017a)
-chg9017a
-saveWidget(chg9017a, file = "chg9017a.html")
+ggsave("chg9017a.png", plot = chg9017a, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 
 #
