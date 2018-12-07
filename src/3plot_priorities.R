@@ -131,80 +131,100 @@ saveWidget(pvplot2017, file.path(getwd(), "output", "plots", "pvplot2017.html"))
 
 pvplot1990static <- ggplot(vals1990, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 1990") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot1990static.png", plot = pvplot1990static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2000static <- ggplot(vals2000, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2000") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2000static.png", plot = pvplot2000static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2010static <- ggplot(vals2010, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2010") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2010static.png", plot = pvplot2010static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2011static <- ggplot(vals2011, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2011") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2011static.png", plot = pvplot2011static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2012static <- ggplot(vals2012, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2012") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2012static.png", plot = pvplot2012static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2013static <- ggplot(vals2013, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2013") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2013static.png", plot = pvplot2013static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2014static <- ggplot(vals2014, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2014") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2014static.png", plot = pvplot2014static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2015static <- ggplot(vals2015, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2015") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2015static.png", plot = pvplot2015static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2016static <- ggplot(vals2016, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2016") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2016static.png", plot = pvplot2016static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
 
 pvplot2017static <- ggplot(vals2017, aes(x = step, y = priorval, color = state)) +
   geom_line() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_x_continuous(breaks = seq(from = 1, to = 500, by = 50)) +
+  scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+  expand_limits(y = c(1, 30000000)) +
+  theme(axis.text = element_text(size = 7), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
   labs(x = "Step", y = "Priority value", color = "State", title = "State priority value by algorithm step, 2017") +
-  theme(legend.position = "none") +
-  facet_wrap(~state)
+  facet_wrap(~state, nrow = 5)
 ggsave("pvplot2017static.png", plot = pvplot2017static, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
