@@ -105,7 +105,7 @@ chg9010a <- ggplot(app1, aes(x = reorder(state, -abschg9010), y = abschg9010, co
   geom_point() +
   scale_y_continuous(breaks = seq(from = -5, to = 9, by = 1)) +
   expand_limits(y = c(-5, 9)) +
-  labs(title = "Projected absolute change in number of seats by state, 1990 - 2010", y = "Change in seat number", x = "") +
+  labs(title = "Absolute change in number of seats by state, 1990 - 2010", y = "Change in seat number", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
 ggsave("chg9010a.png", plot = chg9010a, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
