@@ -62,7 +62,7 @@ chg9010p <- ggplot(app1, aes(x = reorder(state, -pcgchg9010), y = pcgchg9010, co
   labs(title = "Percent change in number of seats by state, 1990 - 2010", y = "% change", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-ggsave("chg9010p.png", plot = chg9010p, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
+ggsave("chg9010p.png", plot = chg9010p, device = png(), path = "./output/plots/change/", width = 26, height = 16, units = "cm")
 
 chg1117p <- ggplot(app1, aes(x = reorder(state, -pcgchg1117), y = pcgchg1117, color = pcgchg1117size)) +
   geom_point() +
@@ -71,7 +71,7 @@ chg1117p <- ggplot(app1, aes(x = reorder(state, -pcgchg1117), y = pcgchg1117, co
   labs(title = "Projected percent change in number of seats by state, 2011-2017", y = "Projected % change", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-ggsave("chg1117p.png", plot = chg1117p, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
+ggsave("chg1117p.png", plot = chg1117p, device = png(), path = "./output/plots/change/", width = 26, height = 16, units = "cm")
 
 chg9017p <- ggplot(app1, aes(x = reorder(state, -pcgchg9017), y = pcgchg9017, color = pcgchg9017size)) +
   geom_point() +
@@ -80,7 +80,7 @@ chg9017p <- ggplot(app1, aes(x = reorder(state, -pcgchg9017), y = pcgchg9017, co
   labs(title = "Projected percent change in number of seats by state, 1990-2017", y = "Projected % change", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-ggsave("chg9017p.png", plot = chg9017p, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
+ggsave("chg9017p.png", plot = chg9017p, device = png(), path = "./output/plots/change/", width = 26, height = 16, units = "cm")
 
 
 #
@@ -108,7 +108,7 @@ chg9010a <- ggplot(app1, aes(x = reorder(state, -abschg9010), y = abschg9010, co
   labs(title = "Absolute change in number of seats by state, 1990 - 2010", y = "Change in seat number", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-ggsave("chg9010a.png", plot = chg9010a, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
+ggsave("chg9010a.png", plot = chg9010a, device = png(), path = "./output/plots/change/", width = 26, height = 16, units = "cm")
 
 chg1117a <- ggplot(app1, aes(x = reorder(state, -abschg1117), y = abschg1117, color = abschg1117size)) +
   geom_point() +
@@ -117,7 +117,7 @@ chg1117a <- ggplot(app1, aes(x = reorder(state, -abschg1117), y = abschg1117, co
   labs(title = "Projected absolute change in number of seats by state, 2011-2017", y = "Projected change in seat number", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-ggsave("chg1117a.png", plot = chg1117a, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
+ggsave("chg1117a.png", plot = chg1117a, device = png(), path = "./output/plots/change/", width = 26, height = 16, units = "cm")
 
 chg9017a <- ggplot(app1, aes(x = reorder(state, -abschg9017), y = abschg9017, color = abschg9017size)) +
   geom_point() +
@@ -126,7 +126,7 @@ chg9017a <- ggplot(app1, aes(x = reorder(state, -abschg9017), y = abschg9017, co
   labs(title = "Projected absolute change in number of seats by state, 1990-2017", y = "Projected change in seat number", x = "") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95), legend.position = "none") +
   scale_color_manual(values = c("positive" = "#FFC107", "none" = "black", "negative" = "#1E88E5"))
-ggsave("chg9017a.png", plot = chg9017a, device = png(), path = "./output/plots/", width = 26, height = 16, units = "cm")
+ggsave("chg9017a.png", plot = chg9017a, device = png(), path = "./output/plots/change/", width = 26, height = 16, units = "cm")
 
 
 #
@@ -137,59 +137,59 @@ seat1990plot <- ggplot(app1, aes(area = seat1990, fill = seat1990, label = paste
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 1990")
-ggsave("tree1990.png", plot = seat1990plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree1990.png", plot = seat1990plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2000plot <- ggplot(app1, aes(area = seat2000, fill = seat2000, label = paste(state, "(", seat2000, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2000")
-ggsave("tree2000.png", plot = seat2000plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2000.png", plot = seat2000plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2010plot <- ggplot(app1, aes(area = seat2010, fill = seat2010, label = paste(state, "(", seat2010, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2010")
-ggsave("tree2010.png", plot = seat2010plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2010.png", plot = seat2010plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2011plot <- ggplot(app1, aes(area = seat2011, fill = seat2011, label = paste(state, "(", seat2011, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2011")
-ggsave("tree2011.png", plot = seat2011plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2011.png", plot = seat2011plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2012plot <- ggplot(app1, aes(area = seat2012, fill = seat2012, label = paste(state, "(", seat2012, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2012")
-ggsave("tree2012.png", plot = seat2012plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2012.png", plot = seat2012plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2013plot <- ggplot(app1, aes(area = seat2013, fill = seat2013, label = paste(state, "(", seat2013, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2013")
-ggsave("tree2013.png", plot = seat2013plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2013.png", plot = seat2013plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2014plot <- ggplot(app1, aes(area = seat2014, fill = seat2014, label = paste(state, "(", seat2014, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2014")
-ggsave("tree2014.png", plot = seat2014plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2014.png", plot = seat2014plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2015plot <- ggplot(app1, aes(area = seat2015, fill = seat2015, label = paste(state, "(", seat2015, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2015")
-ggsave("tree2015.png", plot = seat2015plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2015.png", plot = seat2015plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2016plot <- ggplot(app1, aes(area = seat2016, fill = seat2016, label = paste(state, "(", seat2016, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2016")
-ggsave("tree2016.png", plot = seat2016plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2016.png", plot = seat2016plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
 seat2017plot <- ggplot(app1, aes(area = seat2017, fill = seat2017, label = paste(state, "(", seat2017, ")", sep = ""))) +
   geom_treemap(layout = "squarified", show.legend = FALSE) +
   geom_treemap_text(fontface = "italic", colour = "white", place = "centre") +
   labs(title = "Apportioned seats by state, 2017")
-ggsave("tree2017.png", plot = seat2017plot, device = png(), path = "./output/plots/", width = 16, height = 16, units = "cm")
+ggsave("tree2017.png", plot = seat2017plot, device = png(), path = "./output/plots/tree/", width = 16, height = 16, units = "cm")
 
