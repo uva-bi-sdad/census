@@ -3,10 +3,6 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 library(ggplot2)
-library(plotly)
-library(treemapify) #install.packages("treemapify")
-library(RColorBrewer)
-library(htmlwidgets)
 
 
 #
