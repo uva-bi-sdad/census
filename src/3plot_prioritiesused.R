@@ -52,7 +52,10 @@ for (i in seq_along(dflist)) {
 plotvals <- function(df, year) {
   ggplot(df, aes(x = seq, y = priorval, fill = state)) +
     geom_bar(stat = "identity", position = position_dodge()) +
-    theme(axis.text = element_text(size = 10), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
+    scale_x_continuous(breaks = seq(from = 1, to = 55, by = 5)) +
+    scale_y_continuous(breaks = seq(from = 1, to = 30000000, by = 5000000)) +
+    expand_limits(y = c(1, 30000000)) +
+    theme(axis.text = element_text(size = 6), axis.text.x = element_text(angle = 90, vjust = 1, hjust = 1), legend.position = "none") +
     labs(x = "Value # in sequence", y = "Priority value", color = "State", title = paste("Priority values used by state, ", year, sep = "")) +
     facet_wrap(~state, nrow = 5)
   

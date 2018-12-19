@@ -1,0 +1,59 @@
+library(readr)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(ggplot2)
+library(plotly)
+library(treemapify) #install.packages("treemapify")
+library(RColorBrewer)
+library(htmlwidgets)
+
+
+#
+# Read in and prepare data --------------------------------------------------------------------------------------------------
+#
+
+app1 <- read_csv("./output/apportionment.csv", col_names = TRUE)
+
+app2 <- gather(app1, "year", "seats", 2:11)
+app2$year <- str_replace_all(app2$year, "seat", "")
+app2$year <- as.integer(app2$year)
+
+
+app1 <- app1 %>% 
+  mutate(abschg1017 = (seat2017 - seat2010),
+         abschg0010 = (seat2010 - seat2000),
+         abschg1017size = as.factor(ifelse(abschg1017 > 0, "positive",
+                                           ifelse(abschg1017 < 0, "negative",
+                                                  ifelse(abschg1017 == 0, "none", "NA")))),
+         abschg0010size = as.factor(ifelse(abschg0010 > 0, "positive",
+                                             ifelse(abschg0010 < 0, "negative",
+                                                    ifelse(abschg0010 == 0, "none", "NA")))))
+
+
+chg1017a <- ggplot(app1, aes(x = reorder(state, -abschg1017), y = abschg1017, color = abschg1017size)) +
+  geom_point(size = 7) +
+  scale_y_continuous(breaks = seq(from = -1, to = 2, by = 1)) +
+  expand_limits(y = c(-1, 2)) +
+  labs(title = "Projected absolute change in number of seats by state, 2010-2017", y = "Projected change in seat number", x = "",
+       caption = "Note: 2010 apportionment based on 2010 apportionment population. \n Apportionment for 2011-2017 based on resident population (excludes overseas population).") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95, size = 13), legend.position = "none") +
+  scale_color_manual(values = c("positive" = "orange", "none" = "black", "negative" = "#1E88E5")) 
+ggsave("presentationplot1.png", plot = chg1017a, device = png(), path = "./output/plots/", width = 35, height = 16, units = "cm")
+
+chg0010a <- ggplot(app1, aes(x = reorder(state, -abschg0010), y = abschg0010, color = abschg0010size)) +
+  geom_point(size = 7) +
+  scale_y_continuous(breaks = seq(from = -2, to = 4, by = 1)) +
+  expand_limits(y = c(-2, 4)) +
+  labs(title = "Projected absolute change in number of seats by state, 2000-2010", y = "Projected change in seat number", x = "") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.95, size = 13), legend.position = "none") +
+  scale_color_manual(values = c("positive" = "orange", "none" = "black", "negative" = "#1E88E5")) 
+ggsave("presentationplot2.png", plot = chg0010a, device = png(), path = "./output/plots/", width = 35, height = 16, units = "cm")
+
+
+
+
+
+
+
+
