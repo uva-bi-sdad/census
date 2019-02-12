@@ -26,7 +26,7 @@ censuslaw <- read_csv("output/censuslaw.csv")
 # Number of mentions per title
 bytitle <- censuslaw %>% group_by(Source, Title) %>% summarize(n = n()) %>% arrange(n)
 
-ggplot(bytitle, aes(x = Title, y = n)) +
+ggplot(bytitle, aes(x = reorder(Title, n), y = n)) +
   geom_col() +
   labs(title = "Number of mentions per title", x = "Title", y = "Number of mentions") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
@@ -48,16 +48,16 @@ tidylaw <- tidylaw %>% anti_join(stop_words)
 tidylaw$Title <- as.factor(tidylaw$Title)
 
 # Top words
-tidylaw %>% count(word, sort = TRUE) 
+topwords <- tidylaw %>% count(word, sort = TRUE) 
 
 tidylaw %>%
   count(word, sort = TRUE) %>%
-  filter(n > 50) %>%
+  filter(n > 30) %>%
   mutate(word = reorder(word, n)) %>%
   ggplot(aes(word, n)) +
   geom_col() +
   coord_flip() +
-  labs(title = "Most frequently used words (n > 50)", x = "Word", y = "Frequency (n)")
+  labs(title = "Most frequently used words (n > 30)", x = "Word", y = "Frequency (n)")
 
 tidylaw %>%
   group_by(Title) %>%
@@ -75,7 +75,7 @@ tidylaw %>%
 # Word cloud
 tidylaw %>%
   count(word) %>%
-  with(wordcloud(word, n, max.words = 100))
+  with(wordcloud(word, n, max.words = 250))
 
 # Tidy n-grams
 lawbi <- tidylaw %>%
